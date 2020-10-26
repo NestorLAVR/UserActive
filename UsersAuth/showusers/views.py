@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from . functions import UPorDOWN, DateRecieve, AbrDay, UsersAuth_DAY, UsersAuth_pDAY, UsersAuth_MON, UsersAuths_pMON, Date_Today, DateRecieveX,  fetch, recieve_data, value_recieve, recieve_urls_to_fetch, task_threading
+from . functions import UPorDOWN,  AbrDay,  Date_Today, DateRecieveX,  fetch, recieve_data, value_recieve, recieve_urls_to_fetch, task_threading
 from  .models import FastProd_DATA
 
 
