@@ -5,8 +5,7 @@ import monthdelta
 import math
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-f= open('showusers/apikeys.txt', 'r')
-x=f.read().split('\n')
+
 
 apikey= x[1]
 apID= x[0]
