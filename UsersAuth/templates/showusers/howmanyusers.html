@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'showusers/main.css' %}">
+    <title>Document</title>
+    <script>
+    setInterval(() => Location.reload(), 3600000);
+    </script>
+</head>
+<body>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="box1">
+                    <div class="head">dau</div>
+                        <div class="time">Daily Active Users <span>•</span> {{date_day}}</div>
+                        <div class="value">{{DAU}}</div>
+                        {% if trDAU == '▲' %}
+                            <div class="green_difference" >
+                        {% elif trDAU == '▼' %}
+                            <div class="red_difference" >
+                        {% else %}
+                            <div class="grey_difference" >
+                        {% endif %}
+                                <font size="50%">{{trDAU}}</font>{{DAUgrowth}}
+                            </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="box2">
+                    <div class="head">mau</div>
+                    <div class="time">Monthly Active Users • {{date_month}}</div>
+                    <div class="value">{{MAU}}</div>
+                    {% if trMAU == '▲' %}
+                        <div class="green_difference" >
+                    {% elif trMAU == '▼' %}
+                        <div class="red_difference" >
+                    {% else %}
+                        <div class="grey_difference" >
+                    {% endif %}
+                            <font size="50%">{{trMAU}}</font>{{MAUgrowth}}
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="line">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="footer">
+
+                    {% load static %}
+                    <img src="{% static "showusers/logo.png" %}" alt="My image" class="img">
+
+                    <div class="date">
+                        {{date_today}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
+
+
+            <!--
+                {% if trDAU == '▲' %}
+                    <div class="gUPDOWN1" >
+                {% elif trDAU == '▼' %}
+                    <div class="rUPDOWN1" >
+                {% else %}
+                    <div class="grUPDOWN1" >
+                {% endif %}
+                    <font size="50%">{{trDAU}}</font>{{DAUgrowth}}
+                    </div>
+
+                {% load static %}
+                <link rel="stylesheet" type="text/css" href="{% static 'showusers/style.css' %}">
+
+                {% load static %}
+                <img src="{% static "showusers/logo.png" %}" alt="My image" id="img">
+            -->
