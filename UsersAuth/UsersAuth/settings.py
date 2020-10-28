@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-
+import json
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -21,7 +21,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c02d39zij%s%=d@hbq&c88ab_-20nz3t+3(ge4r-(#+^prr@bh'
+with open("showusers/properties.json", "r") as read_file:
+    data = json.load(read_file)
+SECRET_KEY = data["secret_key"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
