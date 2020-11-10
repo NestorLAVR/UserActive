@@ -7,7 +7,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 def UPorDOWN(first, second):
-    index = str(math.fabs(round((first - second) / second * 100 , 1)))
+    try:
+        index = str(math.fabs(round((first - second) / second * 100 , 1)))
+    except:
+        index = "0"
     if first>second:
         index=index + '%'
         tria='▲'

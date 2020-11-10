@@ -8,3 +8,13 @@ class FastProd_DATA(models.Model):
 
     def __str__(self):
         return self.date
+
+class NewApp_DATA(models.Model):
+    date = models.CharField(max_length=40, default='')
+    DAU = models.IntegerField()
+    MAU = models.IntegerField()
+    prevDAU = models.IntegerField()
+    prevMAU = models.IntegerField()
+
+    def __str__(self):
+        return self.date

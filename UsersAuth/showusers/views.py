@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from . functions import UPorDOWN,  AbrDay,  Date_Today, DateRecieveX,  fetch, recieve_data, value_recieve, recieve_urls_to_fetch, task_threading
-from  .models import FastProd_DATA
+from .models import FastProd_DATA, NewApp_DATA
 
 
 def showhowmany(request):
@@ -10,7 +10,7 @@ def showhowmany(request):
         daval=DayValue.date
     except IndexError:
         daval='No'
-    if daval==str(date_d):
+    if daval ==str(date_d):
         DAU = DayValue.DAU
         MAU = DayValue.MAU
         prevDAU = DayValue.prevDAU
@@ -40,6 +40,32 @@ def showhowmany(request):
     context = {"DAU": DAU, "MAU": MAU , "date_day": date_day, "date_month": date_month, "MAUgrowth": MAUgrowth, "DAUgrowth":DAUgrowth, "trMAU":tria_MAU, "trDAU":tria_DAU, "CD": colD, "CM":colM,"date_today":date_today}
 
     return render(request, 'showusers/howmanyusers.html', context)
+
+def show_app1(request):
+    date_d, date_pd, date_m, date_pm = DateRecieveX()
+
+    data = recieve_data()
+    urls = recieve_urls_to_fetch(data, date_d, date_pd, date_m, date_pm, "new_app1")
+    results = task_threading(urls)
+    DAUX, prevDAUX, MAUX, prevMAUX = value_recieve(results, data)
+    DAU = DAUX["new_app1"]
+    prevDAU = prevDAUX["new_app1"]
+    MAU = MAUX["new_app1"]
+    prevMAU = prevMAUX["new_app1"]
+    f = FastProd_DATA(date=date_d, prevDAU=prevDAU, prevMAU=prevMAU, DAU=DAU, MAU=MAU)
+    f.save()
+    date_day = AbrDay(date_d)
+    date_month = AbrDay(date_m) + " - " + AbrDay(date_d)
+    tria_DAU, DAUgrowth, colD = UPorDOWN(DAU, prevDAU)#изменения за прошлый день
+    tria_MAU, MAUgrowth, colM = UPorDOWN(MAU, prevMAU)#изменения за прошлый месяц
+    MAU = str(MAU)[:-3] + ' ' + str(MAU)[-3:]
+    DAU = str(DAU)[:-3] + ' ' + str(DAU)[-3:]
+    date_today = Date_Today()
+    date_today_year = date_today.year
+    date_today = AbrDay(date_today) + ", " + str(date_today_year)
+
+    context = {"DAU": DAU, "MAU": MAU , "date_day": date_day, "date_month": date_month, "MAUgrowth": MAUgrowth, "DAUgrowth":DAUgrowth, "trMAU":tria_MAU, "trDAU":tria_DAU, "CD": colD, "CM":colM,"date_today":date_today}
+    return render(request, 'showusers/app1.html', context)
 
 def allapps(request):
     date_d, date_pd, date_m, date_pm = DateRecieveX()
