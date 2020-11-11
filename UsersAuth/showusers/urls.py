@@ -4,5 +4,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('fastprod', views.showhowmany, ),
-    path('new_app1', views.show_app1, )
+    path('revenuegrid', views.show_app1, )
 ]
