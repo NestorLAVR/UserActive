@@ -76,6 +76,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'UsersAuth.wsgi.application'
 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
